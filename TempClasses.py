@@ -1,5 +1,9 @@
 import pygame, math, random as r, sys,time
 import input_data
+import file
+
+
+
 print(input_data.config)
 pygame.init()
 clock = pygame.time.Clock()
@@ -24,10 +28,14 @@ class Gex ():
         self.height = height
     def draw(self):
         pygame.draw.rect(sc,(255,255,255),(50,50,self.width,self.height),1)
-    def point(self):
-        pygame.draw.circle(sc,(255,255,255),(self.x + self.width//2, self.y + self.height//2), 50, 1)
-    
-            
+        
+class Point ():
+    def __init__(self,x,y,scale):
+        self.x = x
+        self.y = y
+        self.scale = scale
+    def draw (self):
+        pygame.draw.circle(sc,(255,255,255),(self.x,self.y),self.scale,1)
 
 
 
