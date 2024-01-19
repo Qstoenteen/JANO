@@ -23,16 +23,17 @@ class Game:
                     if event.key == pygame.K_SPACE:
                         player.point_init()
                         player.init()
-                        tree.init()
-                        stone.init()
-                        gex.random()
+                        gex.gex_random()
+                        gex.tree_init()
+                        
+                        
                     
             sc.fill((20,20,40))
-            gex.draw()
-            stone.draw()
-            tree.draw()
+            gex.gex_draw()
             player.points_draw()
             player.player_draw()
+            gex.tree_draw()
+            hpbar()
             
             pygame.display.update()
             clock.tick(FPS)

@@ -5,8 +5,10 @@ from classes import *
 player = Player()
 player.init()
 player.point_init()      
-tree = Decor(pygame.image.load(('assets/tree/tree.png')))
-stone = Decor(pygame.image.load(('assets/tree/stone_01.png')))
-stone.init()
-tree.init()
 gex = Gex()
+
+
+###
+gex.tree_init()
+
+print(player.hp)
