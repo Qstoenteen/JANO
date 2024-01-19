@@ -4,13 +4,43 @@ from settings import *
 battle = False
 event = False
 start = (200,200)
-
+biome = 'forest'
 
 class Gex():
     def __init__(self):
+        global biome
+        self.biome = 'forest'
         self.image = pygame.image.load(('assets/gex/forest.png'))
+        self.tree = pygame.image.load(('assets/tree/tree.png'))
+        
+            
     def draw(self):
+        if self.biome == 'forest':
+            self.image = pygame.image.load(('assets/gex/forest.png'))
+            
+        if self.biome == 'winter':
+            self.image = pygame.image.load(('assets/gex/winter.png'))
+            
         sc.blit(self.image,(start))
+        
+    def random(self):
+        n = r.randint(0,1)
+        if n == 0:
+            self.biome = 'forest'
+            biome == 'forest'
+            print('ЛЕТО')
+        if n == 1:
+            self.biome = 'winter'
+            biome == 'winter'
+            print('ЗИМА')
+    def tree(self):
+        if self.biome == 'forest':
+            self.tree = pygame.image.load(('assets/tree/tree.png'))
+        if self.biome == 'winter':
+            self.tree = pygame.image.load(('assets/tree/winter_tree.png'))
+    
+        
+        
 
 class Decor():
     def __init__(self,sprite):

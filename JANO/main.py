@@ -4,7 +4,6 @@ from debug import debug
 from classes import *
 from init import *
 
-
 class Game:
     def __init__(self):
         # general setup
@@ -26,17 +25,14 @@ class Game:
                         player.init()
                         tree.init()
                         stone.init()
+                        gex.random()
                     
             sc.fill((20,20,40))
-            
             gex.draw()
             stone.draw()
             tree.draw()
-            
-            
             player.points_draw()
             player.player_draw()
-            
             
             pygame.display.update()
             clock.tick(FPS)
