@@ -10,6 +10,9 @@ class Game:
         pygame.init()
     def run(self):
         while True:
+            mouse = pygame.mouse.get_pos()
+            
+            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit ()
@@ -23,18 +26,28 @@ class Game:
                     if event.key == pygame.K_SPACE:
                         player.point_init()
                         player.init()
-                        gex.gex_random()
-                        gex.tree_init()
+                        biome.biome_random()
+                        biome.tree_init()
+
                         
                         
-                    
-            sc.fill((20,20,40))
-            gex.gex_draw()
-            player.points_draw()
-            player.player_draw()
-            gex.tree_draw()
-            hpbar()
+            #### MAIN DRAW ####
             
+            sc.fill((20,20,40))
+            biome.biome_draw()
+            tableSprite()
+            player.points_draw()
+            player.player_draw() 
+            biome.tree_draw()
+            
+            
+            ##### UI #####
+            hpbar()
+            biome.gex_text()
+            #inventory()
+            card_target()
+            ################
+
             pygame.display.update()
             clock.tick(FPS)
             

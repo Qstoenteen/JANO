@@ -4,68 +4,7 @@ from settings import *
 
 battle = False
 event = False
-start = (200,200)
-biome = 'forest'
 
-class Gex():
-    def __init__(self):
-        global biome
-        self.biome = 'forest'
-        self.image = pygame.image.load(('assets/gex/forest.png'))
-        self.tree_sprite = pygame.image.load(('assets/tree/tree.png'))
-        
-            
-    def gex_draw(self):
-        if self.biome == 'forest':
-            self.image = pygame.image.load(('assets/gex/forest.png'))
-            
-        if self.biome == 'winter':
-            self.image = pygame.image.load(('assets/gex/winter.png'))
-            
-        if self.biome == 'vulkan':
-            self.image = pygame.image.load(('assets/gex/vulkan.png'))
-            
-        sc.blit(self.image,(start))
-        
-    def gex_random(self):
-        n = r.randint(0,2)
-        if n == 0:
-            self.biome = 'forest'
-            biome == 'forest'
-        if n == 1:
-            self.biome = 'winter'
-            biome == 'winter'
-        if n == 2:
-            self.biome = 'vulkan'
-    def tree_init(self):
-        if self.biome == 'forest':
-            self.tree_sprite = pygame.image.load(('assets/tree/tree.png'))
-        if self.biome == 'winter':
-            self.tree_sprite = pygame.image.load(('assets/tree/winter_tree.png'))
-        if self.biome == 'vulkan':
-            self.tree_sprite = pygame.image.load(('assets/tree/vulkan_tree.png'))
-        print(self.biome)
-        self.n1 = ((r.randint(200,500)),(r.randint(200,500)))
-        self.n2 = ((r.randint(200,500)),(r.randint(200,500)))
-        self.n3 = ((r.randint(200,500)),(r.randint(200,500)))
-        self.n4 = ((r.randint(200,500)),(r.randint(200,500)))
-        self.n5 = ((r.randint(200,500)),(r.randint(200,500)))
-        self.n6 = ((r.randint(200,500)),(r.randint(200,500)))
-        self.n7 = ((r.randint(200,500)),(r.randint(200,500)))
-        self.n8 = ((r.randint(200,500)),(r.randint(200,500)))
-        self.n9 = ((r.randint(200,500)),(r.randint(200,500)))
-    
-    def tree_draw(self):
-        sc.blit(self.tree_sprite,(self.n1))
-        sc.blit(self.tree_sprite,(self.n2))
-        sc.blit(self.tree_sprite,(self.n3))
-        sc.blit(self.tree_sprite,(self.n4))
-        sc.blit(self.tree_sprite,(self.n5))
-        sc.blit(self.tree_sprite,(self.n6))
-        sc.blit(self.tree_sprite,(self.n7))
-        sc.blit(self.tree_sprite,(self.n8))
-        sc.blit(self.tree_sprite,(self.n9))
-     
         
         
 class Player():
@@ -89,7 +28,7 @@ class Player():
         self.point_radius = 10
         
     def point_init(self):
-        self.p1 = start[0]+40,start[1]*2
+        self.p1 = start[0]+r.randint(30,70), start[1]*r.randint(3,5)
         self.p2 = self.p1[0] + self.point_radius*2+(r.randint(1,15)), self.p1[1] + r.randint(-30,25)
         self.p3 = self.p2[0] + self.point_radius*2+(r.randint(1,15)), self.p2[1] + r.randint(-30,25)
         self.p4 = self.p3[0] + self.point_radius*2+(r.randint(1,15)), self.p3[1] + r.randint(-35,25)
@@ -154,8 +93,7 @@ class Player():
             sc.blit(self.image[self.counter//3],(self.p9[0]-self.point_radius*2,self.p9[1]-self.point_radius*2))
         if self.position == 10:
             sc.blit(self.image[self.counter//3],(self.p10[0]-self.point_radius*2,self.p10[1]-self.point_radius*2))
-        
-        
+    
     def info(self):
         print (self.hp,
               self.xp,
@@ -166,6 +104,3 @@ class Player():
         
 
         
-def hpbar():
-    hpbar = pygame.image.load('assets/ui/hp.png')
-    sc.blit(hpbar,(5,5))
