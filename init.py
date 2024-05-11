@@ -1,15 +1,26 @@
 from settings import *
-from classes import *
+from player import *
 from biome import *
 from ui import*
+from debug import debug
+from monster import*
 
 # Init
+
+
 player = Player()
+charUi = CharUi()
 player.init()
 player.point_init()      
 biome = Biome()
 biome.tree_init()
 biome.gex_text()
+
+monster = Monster()
+monster.init()
+button1 = Button(400,200,'Атака')
+button2 = Button(400,300,'Отступить')
+
 
 
 

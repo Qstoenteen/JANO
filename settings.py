@@ -1,7 +1,10 @@
 import pygame
-pygame.init()
-myfont = pygame.font.Font(None,25)
 
+
+pygame.init()
+
+button_push = False
+myfont = pygame.font.Font(None,25)
 start = (60,80)
 WIDTH   = 1280
 HEIGTH  = 720
