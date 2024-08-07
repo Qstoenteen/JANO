@@ -29,10 +29,10 @@ class Player():
         
     def point_init(self):
         self.p1 = start[0]+r.randint(30,70), start[1]*r.randint(3,5)
-        self.p2 = self.p1[0] + self.point_radius*2+(r.randint(1,15)), self.p1[1] + r.randint(-30,25)
-        self.p3 = self.p2[0] + self.point_radius*2+(r.randint(1,15)), self.p2[1] + r.randint(-30,25)
-        self.p4 = self.p3[0] + self.point_radius*2+(r.randint(1,15)), self.p3[1] + r.randint(-35,25)
-        self.p5 = self.p4[0] + self.point_radius*2+(r.randint(1,15)), self.p4[1] + r.randint(-35,25)
+        self.p2 = self.p1[0] + self.point_radius*2+(r.randint(1,5)), self.p1[1] + r.randint(-30,25)
+        self.p3 = self.p2[0] + self.point_radius*2+(r.randint(1,5)), self.p2[1] + r.randint(-30,25)
+        self.p4 = self.p3[0] + self.point_radius*2+(r.randint(1,5)), self.p3[1] + r.randint(-35,25)
+        self.p5 = self.p4[0] + self.point_radius*2+(r.randint(1,5)), self.p4[1] + r.randint(-35,25)
         self.p6 = self.p5[0] + self.point_radius*2+(r.randint(1,15)), self.p5[1] + r.randint(-35,25)
         self.p7 = self.p6[0] + self.point_radius*2+(r.randint(1,15)), self.p6[1] + r.randint(-35,25)
         self.p8 = self.p7[0] + self.point_radius*2+(r.randint(1,15)), self.p7[1] + r.randint(-35,25)

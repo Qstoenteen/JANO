@@ -32,15 +32,15 @@ class Card ():
                 xx = 100 - xx
                 if xx < 0:
                     xx -= xx
-            sc.blit(self.sprite, (self.x, self.y+80 - xx))
+            sc.blit(self.sprite, (self.x, self.y + 80 - xx))
             sc.blit(self.text,(self.x + 60, self.y + 280 - xx))
             
         if xx < 0 :
             sc.blit(self.sprite, (self.x, self.y + 80))
             sc.blit(self.text,(self.x + 60, self.y + 280))
+    #def pick(self):
         
-
-
+        
 class Button():
     
     def __init__(self,x,y,text):
@@ -91,45 +91,39 @@ class CharUi():
             self.buff = False
             self.think = False
             self.sprite = pygame.image.load('assets/ui/null.png')
+            self.push = False
         
         def init_stat(self):
-            if self.stat == False:
-                self.stat = True
-            elif self.stat == True:
-                self.stat = False
-                print(self.stat)
             
-            self.inventory = False
-            self.buff = False
-            self.think = False
-            
+            self.stat = not self.stat
             self.sprite = pygame.image.load('assets/ui/char_ui_01.png')
             
         def init_inventory(self):
-            self.stat = False
-            self.inventory = True
-            self.buff = False
-            self.think = False
+            self.inventory = not self.stat
             
             
             self.sprite = pygame.image.load('assets/ui/char_ui_02.png')
         def init_buff(self):
-            self.stat = False
-            self.inventory = True
-            self.buff = True
-            self.think = False
-            
+            self.buff = not self.stat
+        
             self.sprite = pygame.image.load('assets/ui/char_ui_03.png')
         def init_think(self):
-            self.stat = False
-            self.inventory = False
-            self.buff = False
-            self.think = True
+            self.think = not self.stat
             
             self.sprite = pygame.image.load('assets/ui/char_ui_04.png')
                 
         def draw(self):
             sc.blit(self.sprite,(143,423))
+            
+        def clear(self):
+            if self.push == True:
+                self.stat = False
+                self.inventory = False
+                self.buff = False
+                self.think = False
+                self.sprite = pygame.image.load('assets/ui/null.png')
+            print('CLEARLCEARCLEAR')
+
         
         def info(self):
             print(self.push)

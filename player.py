@@ -13,6 +13,11 @@ class Player():
                  pygame.image.load('assets/char_animation/char2.png'),
                  pygame.image.load('assets/char_animation/char3.png'),
                  pygame.image.load('assets/char_animation/char4.png')]
+        
+        self.current_frame = 0
+        self.frame_duration = 0.1
+        self.time_since_last_frame = 0
+        
     def init(self):
         self.hp = 100
         self.damage = 1
@@ -38,6 +43,7 @@ class Player():
         self.p8 = self.p7[0] + self.point_radius*2+(r.randint(1,15)), self.p7[1] + r.randint(-35,25)
         self.p9 = self.p8[0] + self.point_radius*2+(r.randint(1,15)), self.p8[1] + r.randint(-35,25)
         self.p10 = self.p9[0] + self.point_radius*2+(r.randint(1,15)), self.p9[1] + r.randint(-35,25)
+        
     
     def points_draw(self):
         pygame.draw.circle(sc,(255,255,255),(self.p1),self.point_radius,1)
@@ -80,7 +86,19 @@ class Player():
     def move_down(self):
         if self.position > 1:
             self.position -= 1  
-            print(self.position)     
+ 
+    
+    
+    def clear_player_draw(self):
+        
+        if self.time_since_last_frame >= self.frame_duration:
+            self.current_frame = (self.current_frame + 5) % (self.image)
+            self.time_since_last_frame = 0
+        sc.blit(self.image[self.current_frame],(self.p1[0]-self.point_radius*2,self.p1[1]-self.point_radius*2))
+        print(self.image)
+        print(self.current_frame,'cuurent_frame')
+        print(self.time_since_last_frame,'time_since_last_frame')
+        #self.time_since_last_frame += self.frame_duration
     
     def player_draw (self):
         if self.counter == 9:

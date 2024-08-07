@@ -4,6 +4,7 @@ from biome import *
 from ui import*
 from debug import debug
 from monster import*
+import time
 
 # Init
 
