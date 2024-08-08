@@ -1,9 +1,7 @@
-import pygame, random as r
-from settings import *
-#from init import *
 
-battle = False
-event = False
+from settings import *
+
+
 
         
         
@@ -13,11 +11,6 @@ class Player():
                  pygame.image.load('assets/char_animation/char2.png'),
                  pygame.image.load('assets/char_animation/char3.png'),
                  pygame.image.load('assets/char_animation/char4.png')]
-        
-        self.current_frame = 0
-        self.frame_duration = 0.1
-        self.time_since_last_frame = 0
-        
     def init(self):
         self.hp = 100
         self.damage = 1
@@ -31,6 +24,12 @@ class Player():
         self.position = 1
         self.counter = 0
         self.point_radius = 10
+        self.is_moving = False
+        self.is_moving_back = False
+        self.moving_speed = 3
+        self.battle = False
+        
+        
         
     def point_init(self):
         self.p1 = start[0]+r.randint(30,70), start[1]*r.randint(3,5)
@@ -44,6 +43,17 @@ class Player():
         self.p9 = self.p8[0] + self.point_radius*2+(r.randint(1,15)), self.p8[1] + r.randint(-35,25)
         self.p10 = self.p9[0] + self.point_radius*2+(r.randint(1,15)), self.p9[1] + r.randint(-35,25)
         
+        self.fpos1 = list(self.p1)
+        self.fpos2 = list(self.p2)
+        self.fpos3 = list(self.p3)
+        self.fpos4 = list(self.p4)
+        self.fpos5 = list(self.p5)
+        self.fpos6 = list(self.p6)
+        self.fpos7 = list(self.p7)
+        self.fpos8 = list(self.p8)
+        self.fpos9 = list(self.p9)
+        self.fpos10 = list(self.p10)
+        self.charpos = self.fpos1
     
     def points_draw(self):
         pygame.draw.circle(sc,(255,255,255),(self.p1),self.point_radius,1)
@@ -77,55 +87,132 @@ class Player():
         print('luck = ',self.luck)
         
         
-        
-    def move_up(self):
-            if self.position < 10:
-                self.position += 1
-            
+    def start_moving(self):
+        self.is_moving = True
     
-    def move_down(self):
-        if self.position > 1:
-            self.position -= 1  
- 
-    
-    
-    def clear_player_draw(self):
-        
-        if self.time_since_last_frame >= self.frame_duration:
-            self.current_frame = (self.current_frame + 5) % (self.image)
-            self.time_since_last_frame = 0
-        sc.blit(self.image[self.current_frame],(self.p1[0]-self.point_radius*2,self.p1[1]-self.point_radius*2))
-        print(self.image)
-        print(self.current_frame,'cuurent_frame')
-        print(self.time_since_last_frame,'time_since_last_frame')
-        #self.time_since_last_frame += self.frame_duration
-    
-    def player_draw (self):
+    def player_draw(self):
         if self.counter == 9:
             self.counter = 0 
         self.counter += 1
+        
+        sc.blit(self.image[self.counter//3],(self.charpos[0]-self.point_radius*2,self.charpos[1]-self.point_radius*2))
+        
+    def player_move (self):
         if self.position == 1:
-            sc.blit(self.image[self.counter//3],(self.p1[0]-self.point_radius*2,self.p1[1]-self.point_radius*2))
+            self.charpos = self.fpos1
+            if self.is_moving == True and self.is_moving_back == False:
+                if self.fpos1[0] <= self.fpos2[0]:
+                    self.fpos1[0] += self.moving_speed
+                if self.fpos1[1] <= self.fpos2[1]:
+                    self.fpos1[1] += self.moving_speed
+                if self.fpos1[1] >= self.fpos2[1]:
+                    self.fpos1[1] -= self.moving_speed
+                if self.fpos1 >= self.fpos2:
+                    self.position += 1
+                    self.is_moving = False
+            if self.is_moving_back == True and self.is_moving == False:
+                print('Вы вернулись на базу')
+                    
         if self.position == 2:
-            sc.blit(self.image[self.counter//3],(self.p2[0]-self.point_radius*2,self.p2[1]-self.point_radius*2))
+            if self.is_moving == True:
+                if self.fpos1[0] <= self.fpos3[0]:
+                    self.fpos1[0] += self.moving_speed
+                if self.fpos1[1] <= self.fpos3[1]:
+                    self.fpos1[1] += self.moving_speed
+                if self.fpos1[1] >= self.fpos3[1]:
+                    self.fpos1[1] -= self.moving_speed
+                if self.fpos1 >= self.fpos3:
+                    self.position += 1
+                    self.is_moving = False
+                    
+    
+        
         if self.position == 3:
-            sc.blit(self.image[self.counter//3],(self.p3[0]-self.point_radius*2,self.p3[1]-self.point_radius*2))
+            if self.is_moving == True:
+                if self.fpos1[0] <= self.fpos4[0]:
+                    self.fpos1[0] += self.moving_speed
+                if self.fpos1[1] <= self.fpos4[1]:
+                    self.fpos1[1] += self.moving_speed
+                if self.fpos1[1] >= self.fpos4[1]:
+                    self.fpos1[1] -= self.moving_speed
+                if self.fpos1 >= self.fpos4:
+                    
+                    self.position += 1
+                    self.is_moving = False
         if self.position == 4:
-            sc.blit(self.image[self.counter//3],(self.p4[0]-self.point_radius*2,self.p4[1]-self.point_radius*2))
+            if self.is_moving == True:
+                if self.fpos1[0] <= self.fpos5[0]:
+                    self.fpos1[0] += self.moving_speed
+                if self.fpos1[1] <= self.fpos5[1]:
+                    self.fpos1[1] += self.moving_speed
+                if self.fpos1[1] >= self.fpos5[1]:
+                    self.fpos1[1] -= self.moving_speed
+                if self.fpos1 >= self.fpos5:
+                    self.position += 1
+                    self.is_moving = False
         if self.position == 5:
-            sc.blit(self.image[self.counter//3],(self.p5[0]-self.point_radius*2,self.p5[1]-self.point_radius*2))
+            if self.is_moving == True:
+                if self.fpos1[0] <= self.fpos6[0]:
+                    self.fpos1[0] += self.moving_speed
+                if self.fpos1[1] <= self.fpos6[1]:
+                    self.fpos1[1] += self.moving_speed
+                if self.fpos1[1] >= self.fpos6[1]:
+                    self.fpos1[1] -= self.moving_speed
+                if self.fpos1 >= self.fpos6:
+                    self.position += 1
+                    self.is_moving = False
+        
         if self.position == 6:
-            sc.blit(self.image[self.counter//3],(self.p6[0]-self.point_radius*2,self.p6[1]-self.point_radius*2))
+            if self.is_moving == True:
+                if self.fpos1[0] <= self.fpos7[0]:
+                    self.fpos1[0] += self.moving_speed
+                if self.fpos1[1] <= self.fpos7[1]:
+                    self.fpos1[1] += self.moving_speed
+                if self.fpos1[1] >= self.fpos7[1]:
+                    self.fpos1[1] -= self.moving_speed
+                if self.fpos1 >= self.fpos7:
+                    self.position += 1
+                    self.is_moving = False
+        
         if self.position == 7:
-            sc.blit(self.image[self.counter//3],(self.p7[0]-self.point_radius*2,self.p7[1]-self.point_radius*2))
+            if self.is_moving == True:
+                if self.fpos1[0] <= self.fpos8[0]:
+                    self.fpos1[0] += self.moving_speed
+                if self.fpos1[1] <= self.fpos8[1]:
+                    self.fpos1[1] += self.moving_speed
+                if self.fpos1[1] >= self.fpos8[1]:
+                    self.fpos1[1] -= self.moving_speed
+                if self.fpos1 >= self.fpos8:
+                    self.position += 1
+                    self.is_moving = False
+        
         if self.position == 8:
-            sc.blit(self.image[self.counter//3],(self.p8[0]-self.point_radius*2,self.p8[1]-self.point_radius*2))
+            if self.is_moving == True:
+                if self.fpos1[0] <= self.fpos9[0]:
+                    self.fpos1[0] += self.moving_speed
+                if self.fpos1[1] <= self.fpos9[1]:
+                    self.fpos1[1] += self.moving_speed
+                if self.fpos1[1] >= self.fpos9[1]:
+                    self.fpos1[1] -= self.moving_speed
+                if self.fpos1 >= self.fpos9:
+                    self.position += 1
+                    self.is_moving = False
+        
         if self.position == 9:
-            sc.blit(self.image[self.counter//3],(self.p9[0]-self.point_radius*2,self.p9[1]-self.point_radius*2))
-        if self.position == 10:
-            sc.blit(self.image[self.counter//3],(self.p10[0]-self.point_radius*2,self.p10[1]-self.point_radius*2))
-    
-    
+            if self.is_moving == True:
+                if self.fpos1[0] <= self.fpos10[0]:
+                    self.fpos1[0] += self.moving_speed
+                if self.fpos1[1] <= self.fpos10[1]:
+                    self.fpos1[1] += self.moving_speed
+                if self.fpos1[1] >= self.fpos10[1]:
+                    self.fpos1[1] -= self.moving_speed
+                if self.fpos1 >= self.fpos10:
+                    self.position += 1
+                    self.is_moving = False
         
 
-        
+                    
+            
+    
+
+

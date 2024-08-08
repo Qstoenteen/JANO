@@ -2,14 +2,17 @@ import pygame, random as r
 from init import*
 from settings import*
 
+
+battle = False
 class Monster():
     def __init__(self):
         self.name = 'none'
         self.sprite = pygame.image.load('assets/wolf_animation/wolf_01.png')
+        self.scale = 1
     def init(self):
-        self.level = r.randint(1,5)
-        self.hp = self.level * 5
-        self.damage = self.hp // 3 
+        self.level = r.randint(1,3) * self.scale
+        self.hp = self.level * r.randint(1,2) * self.scale
+        self.damage = self.hp // 3 * self.scale
         enemy_random = r.randint(0,3)
         if enemy_random == 0:
             self.name = 'wolf'
@@ -40,5 +43,7 @@ class Monster():
         if self.name == 'wolf':
             self.sprite = pygame.image.load('assets/wolf_animation/wolf_01.png')
         sc.blit(self.sprite,(800,200))
-
+        
+    
+        
         

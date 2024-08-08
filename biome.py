@@ -1,6 +1,4 @@
-import pygame, random as r
-from settings import *
-#from init import *
+from init import *
 
 sizeGex = 384
 class Biome():
