@@ -1,3 +1,5 @@
+import pygame
+from settings import*
 from init import *
 
 sizeGex = 384

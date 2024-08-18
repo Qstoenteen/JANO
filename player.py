@@ -26,7 +26,7 @@ class Player():
         self.point_radius = 10
         self.is_moving = False
         self.is_moving_back = False
-        self.moving_speed = 3
+        self.moving_speed = 1
         self.battle = False
         
         
@@ -94,7 +94,6 @@ class Player():
         if self.counter == 9:
             self.counter = 0 
         self.counter += 1
-        
         sc.blit(self.image[self.counter//3],(self.charpos[0]-self.point_radius*2,self.charpos[1]-self.point_radius*2))
         
     def player_move (self):

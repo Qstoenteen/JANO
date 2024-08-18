@@ -33,7 +33,14 @@ class Game:
                 player.point_init()
                 monster.scale += 1
                 player.position = 1
-                
+            
+            if player.hp <= 0:
+                biome.biome_random()
+                player.init()
+                player.point_init()
+                biome.tree_init()
+                monster.init()
+                monster.scale = 1
 
                 
             
@@ -70,7 +77,7 @@ class Game:
             ############## КАРТЫ #########
             card_target() 
             ################
-
+            #print(player.is_moving)
             pygame.display.update()
             
             
@@ -83,6 +90,7 @@ class Game:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT:
                         if player.battle == True:
+                            
                             battle.tick()
                         if player.battle == False:
                             print('Нет Активной Цели')
