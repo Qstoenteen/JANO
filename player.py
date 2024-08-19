@@ -26,7 +26,7 @@ class Player():
         self.point_radius = 10
         self.is_moving = False
         self.is_moving_back = False
-        self.moving_speed = 1
+        self.moving_speed = 10
         self.battle = False
         
         

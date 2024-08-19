@@ -11,7 +11,7 @@ class Eventy:
         
     def eventy_init(self):
         if self.player.battle == False:
-            self.eventy = r.randint(2,2)
+            self.eventy = r.randint(1,2)
             print(self.eventy)
             
             if self.eventy == 1:

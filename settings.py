@@ -14,7 +14,7 @@ myfont = pygame.font.Font(None,25)
 start = (60,80)
 WIDTH   = 1280
 HEIGTH  = 720
-FPS     = 30
+FPS     = 60
 
 sc = pygame.display.set_mode((WIDTH,HEIGTH))
 icon = pygame.image.load('assets/icon.png')
