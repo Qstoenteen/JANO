@@ -11,6 +11,13 @@ class Player():
                  pygame.image.load('assets/char_animation/char2.png'),
                  pygame.image.load('assets/char_animation/char3.png'),
                  pygame.image.load('assets/char_animation/char4.png')]
+        self.avatar_input = [pygame.image.load('assets/char_avatar/100hp.png'),
+                    pygame.image.load('assets/char_avatar/50hp.png'),
+                    pygame.image.load('assets/char_avatar/25hp.png')]
+        self.avatar_resize = [pygame.transform.scale(self.avatar_input[0],(128,128)),
+                        pygame.transform.scale(self.avatar_input[1],(128,128)),
+                        pygame.transform.scale(self.avatar_input[2],(128,128))]
+        
     def init(self):
         self.hp = 100
         self.damage = 1
@@ -29,6 +36,8 @@ class Player():
         self.moving_speed = 10
         self.battle = False
         
+        self.hp_color = (118,197,85)
+        self.avatar = self.avatar_resize[0]
         
         
     def point_init(self):
@@ -94,8 +103,55 @@ class Player():
         if self.counter == 9:
             self.counter = 0 
         self.counter += 1
-        sc.blit(self.image[self.counter//3],(self.charpos[0]-self.point_radius*2,self.charpos[1]-self.point_radius*2))
+        #### AVATAR_DRAW
         
+        ################
+        
+        ### AVATER_FILL
+        if self.hp <= 80:
+            self.hp_color = (167,214,95)
+        if self.hp <= 75:
+            self.avatar = self.avatar_resize[1]
+            self.hp_color = (213,214,95)
+        if self.hp <= 50:
+            self.avatar = self.avatar_resize[2]
+            self.hp_color = (214,155,95)
+        if self.hp <= 25:
+            self.hp_color = (214,95,95)
+        ###############
+        
+        
+    
+        sc.blit(self.image[self.counter//3],(self.charpos[0]-self.point_radius*2,self.charpos[1]-self.point_radius*2))
+        pygame.draw.circle(sc,(self.hp_color),(95,655),50,0)
+        
+        sc.blit(self.avatar,(30,600))
+    
+    def hpbar(self):
+        
+        hpbar = [pygame.image.load('assets/ui/hp0.png'),
+                 pygame.image.load('assets/ui/hp10.png'),
+                 pygame.image.load('assets/ui/hp20.png'),
+                 pygame.image.load('assets/ui/hp40.png'),
+                 pygame.image.load('assets/ui/hp60.png'),
+                 pygame.image.load('assets/ui/hp80.png'),
+                 pygame.image.load('assets/ui/hp100.png')]
+        if self.hp >= 80:
+            sc.blit(hpbar[6],(38,600))
+        if self.hp <= 80:
+            sc.blit(hpbar[5],(38,600))
+        if self.hp <= 60:
+            sc.blit(hpbar[4],(38,600))
+        if self.hp <= 50:
+            sc.blit(hpbar[3],(38,600))
+        if self.hp <=30:
+            sc.blit(hpbar[2],(38,600))
+        if self.hp <= 20:
+            sc.blit(hpbar[1],(38,600))
+        if self.hp <= 0:
+            sc.blit(hpbar[6],(38,600))
+        
+    
     def player_move (self):
         if self.position == 1:
             self.charpos = self.fpos1
@@ -208,6 +264,8 @@ class Player():
                 if self.fpos1 >= self.fpos10:
                     self.position += 1
                     self.is_moving = False
+                    
+    
         
 
                     

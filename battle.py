@@ -21,9 +21,9 @@ class Eventy:
                 print('ПРОИЗОШЛО СОБЫТИЕ 2')
                 print(self.player.is_moving)
                 
-                x = r.randint(1,3)
-                self.player.damage += x
-                print('Вы нашли артефакт, ваш урон увеличен на', x)
+                #x = r.randint(1,3)
+                #self.player.damage += x
+                #print('Вы нашли артефакт, ваш урон увеличен на', x)
                 self.event_cd = False
         if self.player.battle == True:
             self.tick()

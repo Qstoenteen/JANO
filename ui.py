@@ -1,10 +1,8 @@
 import pygame
 from settings import*
 
-def hpbar():
-    hpbar = pygame.image.load('assets/ui/hp.png')
-    sc.blit(hpbar,(38,600))
- 
+    
+
 def tableSprite():
     table = pygame.image.load('assets/ui/table.png')
     sc.blit(table,(530,35))
@@ -131,4 +129,6 @@ class CharUi():
         def info(self):
             print(self.push)
         #def close(self):
+        
+        
             

@@ -70,7 +70,7 @@ class Game:
             
             ##### UI #####
             
-            hpbar()
+            player.hpbar()
             charUi.draw()
             
             biome.gex_text()
